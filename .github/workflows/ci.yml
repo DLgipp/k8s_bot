@@ -33,10 +33,10 @@ jobs:
     - name: Build Docker image
       run: docker build -t tg-bot:latest .
 
-    - name: Set up Yandex Cloud CLI
-      uses: maxkomarychev/setup-ya-cloud-cli@v2
+    - name: Установка Yandex Cloud CLI
+      uses: okar1/yc-cli-install@master
       with:
-        version: 'latest'
+        SA_KEY: ${{ secrets.YC_SA_KEY }}
 
     - name: Authenticate to Yandex Cloud
       run: |
