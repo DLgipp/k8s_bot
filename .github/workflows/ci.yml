@@ -26,7 +26,10 @@ jobs:
 
     - name: Run flake8 linter
       run: flake8 bot/
-
+    
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+      
     - name: Run tests
       run: pytest tests/
 
