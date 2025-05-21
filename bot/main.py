@@ -1,6 +1,6 @@
 import logging
 import random
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.utils import executor
 import os
@@ -31,8 +31,10 @@ async def rand_command(message: Message):
     except Exception:
         await message.answer("Неверный формат. Используй: /rand 10 100")
 
+
 def generate_random_number(low: int, high: int) -> int:
     return random.randint(low, high)
+
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
