@@ -33,7 +33,7 @@ jobs:
     - name: Run tests
       run: pytest tests/
       env:
-        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        TELEGRAM_API_TOKEN: ${{ secrets.BOT_TOKEN }}
 
 
     - name: Build Docker image
