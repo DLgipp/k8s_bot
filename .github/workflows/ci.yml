@@ -39,6 +39,12 @@ jobs:
     - name: Build Docker image
       run: docker build -t tg-bot:latest .
 
+    - name: Write service account key to file
+      run: echo "${{ secrets.YC_SA_KEY }}" > key.json
+
+    - name: Setup YC CLI config
+      run: yc config set service-account-key key.json
+
     - name: Установка Yandex Cloud CLI
       uses: okar1/yc-cli-install@master
       with:
