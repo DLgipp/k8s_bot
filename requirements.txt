@@ -1,1 +1,4 @@
 aiogram==2.25.1
+pytest
+flake8
+black
