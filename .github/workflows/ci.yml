@@ -42,13 +42,13 @@ jobs:
     - name: Write service account key to file
       run: echo "${{ secrets.YC_SA_KEY }}" > key.json
 
-    - name: Setup YC CLI config
-      run: yc config set service-account-key key.json
-
-    - name: Установка Yandex Cloud CLI
+        - name: Установка Yandex Cloud CLI
       uses: okar1/yc-cli-install@master
       with:
         SA_KEY: ${{ secrets.YC_SA_KEY }}
+
+    - name: Setup YC CLI config
+      run: yc config set service-account-key key.json
 
     - name: Authenticate to Yandex Cloud
       run: |
