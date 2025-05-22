@@ -45,6 +45,8 @@ jobs:
     - name: Установка Yandex Cloud CLI
       uses: okar1/yc-cli-install@master
       run: yc config set service-account-key key.json
+      with:
+        SA_KEY: ${{ secrets.YC_SA_KEY }}
 
     - name: Setup YC CLI config
       run: yc config set service-account-key key.json
