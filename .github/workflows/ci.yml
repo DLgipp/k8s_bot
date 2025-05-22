@@ -62,15 +62,15 @@ jobs:
 
     - name: Проверка доступа к YC
       run: yc config list
-      
+
     - name: Authenticate Docker to Yandex Container Registry
       run: |
         echo ${{ secrets.YC_OAUTH }} | docker login --username oauth --password-stdin cr.yandex
 
     - name: Tag and push Docker image to Yandex Container Registry
       run: |
-        docker tag tg-bot:latest cr.yandex/<your-cloud-id>/<your-repo-name>/tg-bot:latest
-        docker push cr.yandex/<your-cloud-id>/<your-repo-name>/tg-bot:latest
+        docker tag tg-bot:latest cr.yandex/b1gdiov82kerar1mkcuv/tg-bot/tg-bot:latest
+        docker push cr.yandex/b1gdiov82kerar1mkcuv/tg-bot/tg-bot:latest
 
     
 
