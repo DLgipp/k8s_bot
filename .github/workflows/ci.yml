@@ -40,7 +40,7 @@ jobs:
       run: docker build -t tg-bot:latest .
 
     - name: Write service account key to file
-      run: echo "${{ secrets.YC_SA_KEY }}" > key.json
+      run: echo '${{ secrets.YC_SA_KEY }}' > key.json
 
     - name: Установить yc CLI
       run: |
