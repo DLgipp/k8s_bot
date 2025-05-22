@@ -69,8 +69,8 @@ jobs:
 
     - name: Tag and push Docker image to Yandex Container Registry
       run: |
-        docker tag tg-bot:latest cr.yandex/b1gdiov82kerar1mkcuv/tg-bot/tg-bot:latest
-        docker push cr.yandex/b1gdiov82kerar1mkcuv/tg-bot/tg-bot:latest
+        docker tag tg-bot:latest cr.yandex/b1gdiov82kerar1mkcuv/tg-bot:latest
+        docker push cr.yandex/b1gdiov82kerar1mkcuv/tg-bot:latest
 
     
 
