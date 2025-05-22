@@ -48,6 +48,9 @@ jobs:
          export PATH="$HOME/yandex-cloud/bin:$PATH"
          echo "$HOME/yandex-cloud/bin" >> $GITHUB_PATH
 
+    - name: Show key.json contents
+      run: cat key.json
+
     - name: Setup YC CLI config
       run: yc config set service-account-key key.json
 
