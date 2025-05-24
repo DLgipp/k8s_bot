@@ -72,10 +72,24 @@ jobs:
         docker tag tg-bot:latest cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
         docker push cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
 
+    # Проверка успешности загрузки образа
+    - name: Verify image in Yandex Container Registry
+      run: |
+        yc container image list --registry-id crpftlpvbpsfqp40g0fu
+
+    # Установка kubectl
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    # Настройка kubeconfig с использованием yc CLI
     - name: Setup kubeconfig
       run: |
         mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+        yc managed-kubernetes cluster get-credentials catqvh3n8u5i7gcj9e11 --external --force
+        cp ~/.kube/config $HOME/.kube/config
+        chmod 600 $HOME/.kube/config
 
     # Создание секрета для Telegram-бота
     - name: Create Kubernetes secret
@@ -90,4 +104,3 @@ jobs:
       run: |
         kubectl apply -f deployment.yaml
         kubectl rollout status deployment/tg-bot --namespace=default
-
