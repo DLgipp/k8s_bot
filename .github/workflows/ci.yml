@@ -72,10 +72,22 @@ jobs:
         docker tag tg-bot:latest cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
         docker push cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
 
+    - name: Setup kubeconfig
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+    # Создание секрета для Telegram-бота
     - name: Create Kubernetes secret
       run: |
-        kubectl delete secret tg-bot-secret --ignore-not-found
-        kubectl create secret generic tg-bot-secret \
-          --from-literal=BOT_TOKEN=${{ secrets.BOT_TOKEN }}
+        kubectl delete secret telegram-bot-secret --ignore-not-found
+        kubectl create secret generic telegram-bot-secret \
+          --from-literal=telegramToken=${{ secrets.BOT_TOKEN }} \
+          --namespace=default --dry-run=client -o yaml | kubectl apply -f -
 
+    # Деплой в Kubernetes
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f deployment.yaml
+        kubectl rollout status deployment/tg-bot --namespace=default
 

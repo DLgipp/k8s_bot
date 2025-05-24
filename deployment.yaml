@@ -16,6 +16,12 @@ spec:
       - name: tg-bot
         image: cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
         imagePullPolicy: Always
+        env:
+        - name: TELEGRAM_BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: telegram-bot-secret
+              key: telegramToken
         ports:
         - containerPort: 80
       imagePullSecrets:
