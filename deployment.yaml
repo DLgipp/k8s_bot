@@ -15,6 +15,7 @@ spec:
       containers:
       - name: tg-bot
         image: cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
       imagePullSecrets:

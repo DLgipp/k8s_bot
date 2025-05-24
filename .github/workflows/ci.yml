@@ -72,5 +72,10 @@ jobs:
         docker tag tg-bot:latest cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
         docker push cr.yandex/crpftlpvbpsfqp40g0fu/tg-bot:latest
 
-    
+    - name: Create Kubernetes secret
+    run: |
+      kubectl delete secret tg-bot-secret --ignore-not-found
+      kubectl create secret generic tg-bot-secret \
+        --from-literal=BOT_TOKEN=${{ secrets.BOT_TOKEN }}
+
 
