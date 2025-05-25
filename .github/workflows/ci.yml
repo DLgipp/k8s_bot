@@ -93,8 +93,8 @@ jobs:
     # Создание секрета для Telegram-бота
     - name: Create Kubernetes secret
       run: |
-        kubectl delete secret telegram-api-secret --ignore-not-found
-        kubectl create secret generic telegram-api-secret \
+        kubectl delete secret telegram-bot-secret --ignore-not-found
+        kubectl create secret generic telegram-bot-secret \
           --from-literal=telegramToken=${{ secrets.BOT_TOKEN }} \
           --namespace=default --dry-run=client -o yaml | kubectl apply -f -
 
